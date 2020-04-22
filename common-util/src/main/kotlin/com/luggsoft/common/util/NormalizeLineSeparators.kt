@@ -1,4 +1,4 @@
-package com.luggsoft.common
+package com.luggsoft.common.util
 
 fun CharSequence.normalizeLineSeparators(): CharSequence = this
     .toString()

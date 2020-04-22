@@ -1,4 +1,4 @@
-package com.luggsoft.common
+package com.luggsoft.common.util
 
 fun CharSequence.columnNumberAtIndex(index: Int): Int
 {

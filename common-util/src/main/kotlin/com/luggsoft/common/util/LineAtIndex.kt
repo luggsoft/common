@@ -1,6 +1,4 @@
-package com.luggsoft.common
-
-import com.luggsoft.common.utils.partial
+package com.luggsoft.common.util
 
 fun CharSequence.lineNumberAtIndex(index: Int): Int
 {

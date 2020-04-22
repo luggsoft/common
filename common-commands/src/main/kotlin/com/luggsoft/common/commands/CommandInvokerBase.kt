@@ -1,6 +1,6 @@
 package com.luggsoft.common.commands
 
-import com.luggsoft.common.logger
+import com.luggsoft.common.util.logger
 
 abstract class CommandInvokerBase<TCommandContext : CommandContext>(
     private val commandHandlerProvider: CommandHandlerProvider<TCommandContext>

@@ -1,4 +1,4 @@
-package com.luggsoft.common
+package com.luggsoft.common.util
 
 inline fun <reified T> Iterable<*>.singleIsInstance(): T
 {

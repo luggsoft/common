@@ -1,7 +1,6 @@
-package com.luggsoft.common
+package com.luggsoft.common.util
 
 import org.intellij.lang.annotations.Language
-import java.io.File
 
 fun Int.asTypeParams(modifier: String = String()): String = (1..this)
     .joinToString { index -> "$modifier TParam$index".trim() }
@@ -13,11 +12,6 @@ fun Int.asParams(modifier: String = String()): String = (1..this)
 
 fun Int.asArgs(): String = (1..this)
     .joinToString { index -> "param$index" }
-
-@Language("kotlin")
-fun generatePartial(x: Int, y: Int): String = """
-    
-"""
 
 @Language("kotlin")
 fun generateMemoize(x: Int): String = """
@@ -41,8 +35,10 @@ data class Tuple$x<${x.asTypeParams("out")}>(${x.asParams("val")})
 * @param tuplex
 * @return
 */
-fun <${x.asTypeParams()}, TResult> ((${x.asTypeParams()}) -> TResult).invokeWithTuple(tuple$x: Tuple$x<${x.asTypeParams()}>): TResult = this
-    .invoke(${(1..x).joinToString { i -> "tuple$x.param$i" }})
+fun <${x.asTypeParams()}, TResult> ((${x.asTypeParams()}) -> TResult).invokeWithTuple(tuple$x: Tuple$x<${x.asTypeParams()}>): TResult
+{
+    return this.invoke(${(1..x).joinToString { i -> "tuple$x.param$i" }})
+}
 
 /**
 * TODO
@@ -51,17 +47,10 @@ fun <${x.asTypeParams()}, TResult> ((${x.asTypeParams()}) -> TResult).invokeWith
 * @param TResult
 * @return
 */
-fun <${x.asTypeParams()}, TResult> ((${x.asTypeParams()}) -> TResult).memoize(): Memoized$x<${x.asTypeParams()}, TResult> = Memoized$x(this)
-
-/**
-* TODO
-*
-* @param missingValue
-* @param TResult
-* @param missingValue
-* @return
-*/
-fun <${x.asTypeParams()}, TResult> ((${x.asTypeParams()}) -> TResult).partial(${x.asParams()}): () -> TResult = TODO() 
+fun <${x.asTypeParams()}, TResult> ((${x.asTypeParams()}) -> TResult).memoize(): Memoized$x<${x.asTypeParams()}, TResult> 
+{
+    return Memoized$x(this)
+}
 
 /**
 * TODO
@@ -114,18 +103,13 @@ fun <TElement> List<TElement>.unrepeat(): List<TElement> = (this as Collection<T
 
 internal fun main()
 {
-    val file = File("common/src/main/kotlin/com/luggsoft/common/__output.kt")
-        .also { file ->
-            file.writeText("")
-        }
-
-    val writer = file.writer()
+    val writer = System.out.writer()
 
     writer.appendln("package com.luggsoft.common")
     writer.appendln("import java.util.concurrent.ConcurrentHashMap")
     writer.appendln("import java.util.concurrent.ConcurrentMap")
 
-    (1..3)
+    (4..6)
         .joinToString(separator = "\n", transform = ::generateMemoize)
         .lines()
         .map(String::trimEnd)

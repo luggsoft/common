@@ -1,4 +1,4 @@
-package com.luggsoft.common
+package com.luggsoft.common.util
 
 fun <TElement> MutableCollection<TElement>.extract(predicate: (TElement) -> Boolean): Collection<TElement>
 {

@@ -1,4 +1,4 @@
-package com.luggsoft.common
+package com.luggsoft.common.util
 
 import kotlin.reflect.full.memberProperties
 
