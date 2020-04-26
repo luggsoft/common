@@ -1,5 +1,3 @@
-![common][img-common]
-
 # Common, `com.luggsoft.common`
 
 [![CircleCI][img-circleci]][www-circleci]
@@ -11,7 +9,7 @@
 The MIT License (MIT). Please see the package [license file][www-license] for more information.
 
 [www-circleci]: https://circleci.com/gh/luggsoft/common
-[img-circleci]: https://circleci.com/gh/luggsoft/common.svg?style=shield&circle-token=98517cbdff7f1f386d2062704d76abcf863fe2ad
+[img-circleci]: https://circleci.com/gh/luggsoft/common.svg?style=shield&circle-token=af646cb0e3f7a0a8c0d7c8591d0584ec2ed76609	
 [www-license]: LICENSE.md
 [img-license]: https://img.shields.io/badge/license-MIT-blue.svg
 [www-gitter]: https://gitter.im/luggsoft-common/community
