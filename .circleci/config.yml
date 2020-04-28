@@ -41,3 +41,9 @@ jobs:
       # run tests!
       - run: gradle test
 
+      - run:
+          name: "Deployment Scripts"
+          command: |
+            echo "Deployment Scripts"
+            git log
+
