@@ -42,6 +42,8 @@ jobs:
       - run:
           name: "Versioning"
           command: |
+            git config user.email "luggsoft+build@gmail.com"
+            git config user.name "luggsoft-build"
             if [ "$CIRCLE_BRANCH" = "master" ]
             then
               PREV_VERSION="$(git describe --abbrev=0 --tags)";
