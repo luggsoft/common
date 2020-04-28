@@ -39,15 +39,15 @@ jobs:
 
       # run tests!
       - run: gradle test
-      - run:
-          name: "Deployment Scripts"
-          command: |
-            echo "Running deployment scripts... as $GITHUB_USERNAME"
-            if [ "$CIRCLE_BRANCH" = "master" ]
-            then
-              echo "Currently on MASTER"
-            fi
-            if [ "$CIRCLE_BRANCH" = "develop" ]
-            then
-              echo "Currently on DEVELOP"
-            fi
+      # - run:
+      #     name: "Deployment Scripts"
+      #     command: |
+      #       echo "Running deployment scripts... as $GITHUB_USERNAME"
+      #       if [ "$CIRCLE_BRANCH" = "master" ]
+      #       then
+      #         echo "Currently on MASTER"
+      #       fi
+      #       if [ "$CIRCLE_BRANCH" = "develop" ]
+      #       then
+      #         echo "Currently on DEVELOP"
+      #       fi
