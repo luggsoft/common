@@ -42,13 +42,14 @@ jobs:
       - run:
           name: "Versioning"
           command: |
-            if [ "$CIRCLE_BRANCH" = "master" ] then
+            if [ "$CIRCLE_BRANCH" = "master" ]
+            then
               PREV_VERSION="$(git describe --abbrev=0 --tags)";
               NEXT_VERSION="${PREV_VERSION%.*}.$((${PREV_VERSION##*.}+1))";
-              echo "version=$NEXT_VERSION" > version.properties
-              git commit --allow-empty --message="Tagging with $NEXT_VERSION"
-              git push origin master
-              git tag "$NEXT_VERSION"
-              git push origin --tags
-            fi
-            echo "Done"
+              echo "version=$NEXT_VERSION" > version.properties;
+              git commit --allow-empty --message="Tagging with $NEXT_VERSION";
+              git push origin master;
+              git tag "$NEXT_VERSION";
+              git push origin --tags;
+            fi;
+            echo "Done";
