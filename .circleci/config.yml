@@ -23,8 +23,11 @@ jobs:
       TERM: dumb
 
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "49:d9:04:f4:dd:dd:ca:87:60:60:6f:62:ae:5e:36:6b"
+
       - checkout
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
