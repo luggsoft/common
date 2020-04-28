@@ -42,7 +42,7 @@ jobs:
       - run:
           name: "Deployment Scripts"
           command: |
-            echo "Running deployment scripts..."
+            echo "Running deployment scripts... as $GITHUB_USERNAME"
             if [ "$CIRCLE_BRANCH" = "master" ]
             then
               echo "Currently on MASTER"
