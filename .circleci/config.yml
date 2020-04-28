@@ -1,5 +1,10 @@
 version: 2.1
 
+workflows:
+  build-workflow:
+    jobs:
+      - build
+
 jobs:
   build:
     docker:
