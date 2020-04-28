@@ -1,21 +1,22 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
-version: 2
+version: 2.1
+
+workflows:
+  build:
+    jobs:
+      - build:
+          context: luggsoft-build
+
 jobs:
   build:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
-
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
     working_directory: ~/repo
-
     environment:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
@@ -23,7 +24,6 @@ jobs:
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -32,7 +32,6 @@ jobs:
             - v1-dependencies-
 
       - run: gradle dependencies
-
       - save_cache:
           paths:
             - ~/.gradle
@@ -40,4 +39,15 @@ jobs:
 
       # run tests!
       - run: gradle test
-
+      - run:
+          name: "Deployment Scripts"
+          command: |
+            echo "Running deployment scripts... as $GITHUB_USERNAME"
+            if [ "$CIRCLE_BRANCH" = "master" ]
+            then
+              echo "Currently on MASTER"
+            fi
+            if [ "$CIRCLE_BRANCH" = "develop" ]
+            then
+              echo "Currently on DEVELOP"
+            fi
