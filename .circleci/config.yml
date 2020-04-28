@@ -1,10 +1,9 @@
 version: 2.1
 
 workflows:
-  build:
+  build-workflow:
     jobs:
-      - build:
-          context: luggsoft-build
+      - build
 
 jobs:
   build:
