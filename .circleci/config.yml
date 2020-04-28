@@ -39,15 +39,16 @@ jobs:
 
       # run tests!
       - run: gradle test
-      # - run:
-      #     name: "Deployment Scripts"
-      #     command: |
-      #       echo "Running deployment scripts... as $GITHUB_USERNAME"
-      #       if [ "$CIRCLE_BRANCH" = "master" ]
-      #       then
-      #         echo "Currently on MASTER"
-      #       fi
-      #       if [ "$CIRCLE_BRANCH" = "develop" ]
-      #       then
-      #         echo "Currently on DEVELOP"
-      #       fi
+      - run:
+          name: "Versioning"
+          command: |
+            if [ "$CIRCLE_BRANCH" = "master" ] then
+              PREV_VERSION="$(git describe --abbrev=0 --tags)";
+              NEXT_VERSION="${PREV_VERSION%.*}.$((${PREV_VERSION##*.}+1))";
+              echo "version=$NEXT_VERSION" > version.properties
+              git commit --allow-empty --message="Tagging with $NEXT_VERSION"
+              git push origin master
+              git tag "$NEXT_VERSION"
+              git push origin --tags
+            fi
+            echo "Done"
